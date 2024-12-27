@@ -13,7 +13,7 @@ export const getWebpackConfig = (options: ConfigOptions) => {
         mode: mode ?? 'development',
         entry: paths.entry,
         module: {
-            rules: getLoadersConfig(),
+            rules: getLoadersConfig(options),
         },
         output: {
             path: paths.output,
