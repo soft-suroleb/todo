@@ -1,0 +1,17 @@
+.todo {
+    margin-inline: 20%;
+    padding-top: 50px;
+}
+
+.todos-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--elements-gap);
+    margin-top: var(--section-gap);
+}
+
+.todos-item {
+    background: var(--bg-color-30);
+    border-radius: 10px;
+    padding: 10px 20px;
+}
