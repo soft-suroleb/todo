@@ -1,28 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '../header/header';
-import { useModal } from '../hooks/use-modal';
 
 import './todo.scss';
 
-export const Todo = () => {
-    const { showModal } = useModal();
+export enum TodoTaskStatus {
+    Active = 'active',
+    Done = 'done',
+    Deleted = 'delete',
+}
 
-    const addTodo = () => {
-        showModal({
-            title: 'Добавить задачу',
-            content: 'Что-то там'
+export interface TodoTask {
+    id: number;
+    title: string;
+    description: string;
+    status: TodoTaskStatus;
+}
+
+export const Todo = () => {
+    const [tasks, setTasks] = useState<TodoTask[]>([]);
+    // console.log(tasks);
+    const onAddTodo = (task: TodoTask) => {
+        setTasks(prev => {
+            console.log(task);
+            return [
+                {
+                    ...task,
+                    status: TodoTaskStatus.Active,
+                    id: Math.max(...prev.map(item => item.id)) + 1
+                },
+                ...prev,
+            ]
         })
     }
 
     return (
         <div className="todo">
-            <Header onAddTodo={addTodo} />
-            <div className="todos-container">
-                <div className="todos-item">Item</div>
-                <div className="todos-item">Item</div>
-                <div className="todos-item">Item</div>
-                <div className="todos-item">Item</div>
-            </div>
+            <Header onAddTodo={onAddTodo} />
+            {tasks.length ? (
+                <div className="todo-container">
+                    {tasks.map((task, idx) => (
+                        <div
+                            className='todo-item'
+                            key={idx}
+                        >
+                            {task.title}
+                        </div>
+                    ))}
+                </div>
+
+            ) : (
+                <div className="todo-empty">{"У вас еще нет задач"}</div>
+            )}
         </div>
     )
 }

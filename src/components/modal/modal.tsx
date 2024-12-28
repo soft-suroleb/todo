@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useModal } from '../hooks/use-modal';
+import './modal.scss';
 
 export interface ModalProps extends Omit<BaseModalProps, 'content' | 'open' | 'children'> {
     title: string;
