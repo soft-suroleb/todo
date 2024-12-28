@@ -14,4 +14,51 @@
     background: var(--bg-color-30);
     border-radius: 10px;
     padding: 10px 20px;
+    display: flex;
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--field-gap);
+        flex-grow: 1;
+    }
+
+    &-title {
+        font-weight: 700;
+    }
+
+    &-actions {
+        display: flex;
+        flex-direction: row;
+        gap: var(--field-gap);
+        align-items: center;
+    }
+
+    &:hover &-delete,
+    &:hover &-edit,
+    &:hover &-done {
+        width: 25px;
+        height: 25px;
+        opacity: .5;
+    }
+
+    &-delete, &-edit, &-done {
+        width: 25px;
+        height: 25px;
+        opacity: 0;
+        cursor: pointer;
+        transition: opacity .15s ease;
+    }
+
+    &-delete {
+        background-color: red;
+    }
+
+    &-edit {
+        background-color: yellow;
+    }
+
+    &-done {
+        background-color: green;
+    }
 }

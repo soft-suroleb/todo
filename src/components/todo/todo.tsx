@@ -18,7 +18,7 @@ export interface TodoTask {
 
 export const Todo = () => {
     const [tasks, setTasks] = useState<TodoTask[]>([]);
-    // console.log(tasks);
+
     const onAddTodo = (task: TodoTask) => {
         setTasks(prev => {
             console.log(task);
@@ -43,7 +43,15 @@ export const Todo = () => {
                             className='todo-item'
                             key={idx}
                         >
-                            {task.title}
+                            <div className="todo-item-content">
+                                <div className="todo-item-title">{task.title}</div>
+                                <div className="todo-item-description">{task.description}</div>
+                            </div>
+                            <div className="todo-item-actions">
+                                <div className="todo-item-done"></div>
+                                <div className="todo-item-edit"></div>
+                                <div className="todo-item-delete"></div>
+                            </div>
                         </div>
                     ))}
                 </div>
