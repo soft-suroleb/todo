@@ -9,7 +9,7 @@ import { cn } from '../../utils';
 const cls = cn('main');
 
 export const Main = () => {
-    const { tasks, addTask, changeTaskStatus } = useTodo();
+    const { tasks, addTask, editTask, changeTaskStatus } = useTodo();
     const aliveTasks = tasks.filter(task => task.status !== TodoTaskStatus.Deleted);
 
     return (
@@ -18,6 +18,7 @@ export const Main = () => {
             {aliveTasks.length ? (
                 <TodoList
                     tasks={aliveTasks}
+                    onEditTask={editTask}
                     onChangeTaskStatus={changeTaskStatus}
                 />
             ) : (

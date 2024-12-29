@@ -1,10 +1,10 @@
 import React from "react"
-import './header.scss';
-import { Button, ButtonView } from "../button/button";
-import { useModal } from "../../hooks/use-modal";
-import { TodoTask } from "../todo-list/todo-list";
-import { TodoForm } from "../todo-form/todo-form";
 
+import { Button, ButtonView } from "../button/button";
+import { TodoTask } from "../todo-list/todo-list";
+import { useForm } from "../../hooks/use-form";
+
+import './header.scss';
 import { cn } from "../../utils";
 const cls = cn('header');
 
@@ -13,35 +13,19 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = (props) => {
-    const { showModal, closeModal } = useModal();
-
-    const onSubmit = (task: TodoTask) => {
-        props.onAddTask(task);
-        closeModal();
-    };
-
-    const onAddClick = () => {
-        showModal({
-            title: 'Добавить задачу',
-            content: (
-                <TodoForm
-                    onSubmit={onSubmit}
-                    onCancel={closeModal}
-                />
-            )
-        })
-    }
+    const { openForm } = useForm({ title: 'Добавить задачу' });
+    const onAddTaskClick = () => openForm({ onSubmit: props.onAddTask});
 
     return (
         <header className={cls()}>
             <span className={cls('title')}>
-                {'Список ваших дел'}
+                {'Список ваших задач'}
             </span>
             <Button
                 className={cls('add-task')}
                 view={ButtonView.Primary}
                 text={'Добавить задачу'}
-                onClick={onAddClick}
+                onClick={onAddTaskClick}
             />
         </header>
     )

@@ -20,11 +20,17 @@ export const useTodo = () => {
         })
     }
 
+    const editTask = (task: TodoTask) => {
+        setTasks(prev => prev.map(
+            item => item.id === task.id ? task : item
+        ))
+    }
+
     const changeTaskStatus = (idx: number, status: TodoTaskStatus) => {
         setTasks(prev => prev.map(
             task => task.id === idx ? { ...task, status } : task
         ))
     }
 
-    return { tasks, addTask, changeTaskStatus };
+    return { tasks, addTask, editTask, changeTaskStatus };
 }

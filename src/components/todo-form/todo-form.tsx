@@ -57,7 +57,7 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
                 <Button
                     className={cls('submit')}
                     view={ButtonView.Primary}
-                    text={"Добавить"}
+                    text={"Применить"}
                     onClick={() => props.onSubmit(task)}
                 />
             </div>
