@@ -3,6 +3,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--bg-color-secondary);
+    padding: var(--section-padding);
 
     &__title {
         font-weight: 700;
