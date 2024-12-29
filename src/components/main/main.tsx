@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from '../header/header';
 
-import './todo.scss';
+import './main.scss';
 
 export enum TodoTaskStatus {
     Active = 'active',
@@ -16,7 +16,7 @@ export interface TodoTask {
     status: TodoTaskStatus;
 }
 
-export const Todo = () => {
+export const Main = () => {
     const [tasks, setTasks] = useState<TodoTask[]>([]);
 
     const onAddTodo = (task: TodoTask) => {
