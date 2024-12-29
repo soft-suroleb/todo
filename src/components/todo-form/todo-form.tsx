@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { TodoTask } from "../main/main";
+import { TodoTask } from "../todo-list/todo-list";
 import TextField from '@mui/material/TextField';
 import { Button, ButtonView } from '../button/button';
 import './todo-form.scss';

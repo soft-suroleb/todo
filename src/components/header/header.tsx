@@ -2,7 +2,7 @@ import React from "react"
 import './header.scss';
 import { Button, ButtonView } from "../button/button";
 import { useModal } from "../hooks/use-modal";
-import { TodoTask } from "../main/main";
+import { TodoTask } from "../todo-list/todo-list";
 import { TodoForm } from "../todo-form/todo-form";
 
 import { cn } from "../../utils";
