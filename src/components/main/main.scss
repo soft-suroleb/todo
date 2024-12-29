@@ -1,4 +1,21 @@
-.todo {
+.main {
     margin-inline: 20%;
     padding-top: 50px;
+
+    &__empty {
+        background-color: var(--bg-color-secondary);
+        margin-top: var(--section-gap);
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius);
+        
+        & span {
+            font-size: 2rem;
+            text-transform: uppercase;
+            opacity: .3;
+            font-weight: 700;
+        }
+    }
 }

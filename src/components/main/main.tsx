@@ -4,6 +4,9 @@ import { TodoList, TodoTask, TodoTaskStatus } from '../todo-list/todo-list';
 
 import './main.scss';
 
+import { cn } from '../../utils';
+const cls = cn('main');
+
 export const Main = () => {
     const [tasks, setTasks] = useState<TodoTask[]>([]);
 
@@ -34,7 +37,7 @@ export const Main = () => {
     const aliveTasks = tasks.filter(task => task.status !== TodoTaskStatus.Deleted);
 
     return (
-        <div className="todo">
+        <div className={cls()}>
             <Header onAddTodo={onAddTodo} />
             {aliveTasks.length ? (
                 <TodoList
@@ -42,7 +45,9 @@ export const Main = () => {
                     onChangeTaskStatus={onChangeTaskStatus}
                 />
             ) : (
-                <div className="todo-empty">{"У вас еще нет задач"}</div>
+                <div className={cls('empty')}>
+                    <span>{"У вас еще нет задач"}</span>
+                </div>
             )}
         </div>
     )

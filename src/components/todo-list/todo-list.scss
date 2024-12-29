@@ -6,7 +6,7 @@
 
     &__item {
         background: var(--bg-color-secondary);
-        border-radius: 10px;
+        border-radius: var(--border-radius);
         padding: var(--block-padding);
         display: flex;
 
