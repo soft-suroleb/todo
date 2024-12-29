@@ -4,7 +4,7 @@ import {
     ModalProps as BaseModalProps,
 } from '@mui/material';
 import React from 'react';
-import { useModal } from '../hooks/use-modal';
+import { useModal } from '../../hooks/use-modal';
 import './modal.scss';
 
 import { cn } from '../../utils';
