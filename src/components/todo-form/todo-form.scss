@@ -1,0 +1,44 @@
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+    min-width: 400px;
+
+    &__button {
+        margin-top: var(--section-gap);
+        width: fit-content;
+    }
+
+    & label,
+    & label.Mui-focused,
+    & .MuiInputBase-root {
+        color: var(--primary-color);
+        font-size: 14px;
+    }
+    
+    & label.Mui-focused {
+        transform: translate(0, -1.5px) scale(1);
+    }
+
+    & label.MuiFormLabel-filled {
+        transform: translate(0, -1.5px) scale(1);
+    }
+
+    & .MuiInput-underline:after {
+        border-bottom-color: var(--accent-color-light),
+    }
+    
+    & .MuiInput-underline {
+        border-bottom: 1px solid var(--primary-color);
+    }
+
+    &__action {
+        display: flex;
+        justify-content: flex-end;
+        gap: var(--elements-gap);
+    }
+
+    &__submit {
+        font-weight: 700;
+    }
+}

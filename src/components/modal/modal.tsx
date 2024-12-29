@@ -7,6 +7,9 @@ import React from 'react';
 import { useModal } from '../hooks/use-modal';
 import './modal.scss';
 
+import { cn } from '../../utils';
+const cls = cn('modal');
+
 export interface ModalProps extends Omit<BaseModalProps, 'content' | 'open' | 'children'> {
     title: string;
     content: React.ReactNode;
@@ -24,9 +27,9 @@ export const Modal = () => {
     return (
         <BaseModal open onClose={closeModal} {...rest}>
             <Fade in>
-                <div className={'modal'}>
-                    <div className={'modal__title'}>{title}</div>
-                    <div className={'modal__content'}>{content}</div>
+                <div className={cls()}>
+                    <div className={cls('title')}>{title}</div>
+                    <div className={cls('content')}>{content}</div>
                 </div>
             </Fade>
         </BaseModal>

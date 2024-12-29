@@ -1,11 +1,19 @@
 .button {
     padding: 5px 20px;
-    border: none;
-    background-color: var(--accent-color);
     cursor: pointer;
     border-radius: 10px;
 
     transition: transform .3s ease;
+
+    &_view_primary {
+        background-color: var(--accent-color);
+        border: none;
+    }
+
+    &_view_secondary {
+        background: none;
+        border: 1px solid var(--accent-color);
+    }
 }
 
 .button:hover {
