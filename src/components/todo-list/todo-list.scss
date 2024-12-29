@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--elements-gap);
-    margin-top: var(--section-gap);
+    overflow-y: scroll;
 
     &__item {
         background: var(--bg-color-secondary);
@@ -57,6 +57,10 @@
                 background-color: red;
             }
         }
+    }
+
+    &::-webkit-scrollbar {
+       display: none;
     }
 }
 

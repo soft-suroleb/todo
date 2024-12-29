@@ -1,15 +1,15 @@
 .main {
     margin-inline: 20%;
-    padding-top: 50px;
+    padding-block: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+    height: 100dvh;
 
     &__empty {
-        background-color: var(--bg-color-secondary);
-        margin-top: var(--section-gap);
-        height: 200px;
         display: flex;
-        align-items: center;
         justify-content: center;
-        border-radius: var(--border-radius);
+        flex-grow: 1;
         
         & span {
             font-size: 2rem;
@@ -17,5 +17,12 @@
             opacity: .3;
             font-weight: 700;
         }
+    }
+
+    & footer {
+        height: 50px;
+        border-radius: var(--border-radius);
+        background-color: var(--bg-color-secondary);
+        margin-top: auto;
     }
 }

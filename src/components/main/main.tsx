@@ -26,6 +26,7 @@ export const Main = () => {
                     <span>{"У вас еще нет задач"}</span>
                 </div>
             )}
+            <footer>footer</footer>
         </div>
     )
 }
