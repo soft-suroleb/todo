@@ -1,9 +1,14 @@
 import React from "react"
 
-import './todo-list.scss';
-
-import { cn } from "../../utils";
 import { useForm } from "../../hooks/use-form";
+import { CheckmarkIcon } from "../icons/checkmark/checkmark";
+import { EditIcon } from "../icons/edit/edit";
+
+import './todo-list.scss';
+import { cn } from "../../utils";
+import { SvgSize } from "../icons/types";
+import { TrashIcon } from "../icons/trash/trash";
+import { RevertIcon } from "../icons/revert/revert";
 const cls = cn('todo-list');
 
 export enum TodoTaskStatus {
@@ -32,6 +37,9 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
     return (
         <div className={cls()}>
             {tasks.map(task => {
+                const isActive = task.status === TodoTaskStatus.Active;
+                const isDone = task.status === TodoTaskStatus.Done;
+
                 const onDeleteTask = () => onChangeTaskStatus(task.id, TodoTaskStatus.Deleted);
                 const onDoneTask = () => onChangeTaskStatus(task.id, TodoTaskStatus.Done);
                 const onRevertTask = () => onChangeTaskStatus(task.id, TodoTaskStatus.Active);
@@ -44,30 +52,34 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
                 };
 
                 return (
-                    <div className={cls('item')} key={task.id}>
+                    <div className={cls('item', { done: isDone })} key={task.id}>
                         <div className={cls('item-content')}>
-                            <div className={cls('item-title')}>{task.title}</div>
+                            <div className={cls('item-title', { done: isDone })}>{task.title}</div>
                             <div className={cls('item-description')}>{task.description}</div>
                         </div>
                         <div className={cls('item-actions')}>
-                            {task.status === TodoTaskStatus.Active ? (
-                                <div
+                            {isActive ? (
+                                <CheckmarkIcon
                                     className={cls('item-action', { done: true })}
                                     onClick={onDoneTask}
+                                    size={SvgSize.XL}
                                 />
                             ) : (
-                                <div
+                                <RevertIcon
                                     className={cls('item-action', { revert: true })}
                                     onClick={onRevertTask}
+                                    size={SvgSize.L}
                                 />
                             )}
-                            <div
+                            <EditIcon
                                 className={cls('item-action', { edit: true })}
                                 onClick={onEditTask}
+                                size={SvgSize.L}
                             />
-                            <div
+                            <TrashIcon
                                 className={cls('item-action', { delete: true })}
                                 onClick={onDeleteTask}
+                                size={SvgSize.L}
                             />
                         </div>
                     </div>

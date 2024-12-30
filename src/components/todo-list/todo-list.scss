@@ -3,12 +3,13 @@
     flex-direction: column;
     gap: var(--elements-gap);
     overflow-y: scroll;
-
+    
     &__item {
         background: var(--bg-color-secondary);
         border-radius: var(--border-radius);
         padding: var(--block-padding);
         display: flex;
+        transition: opacity .3s ease;
 
         &-content {
             display: flex;
@@ -19,6 +20,11 @@
 
         &-title {
             font-weight: 700;
+            position: relative;
+
+            &_done {
+                text-decoration: line-through;
+            }
         }
 
         &-actions {
@@ -31,8 +37,6 @@
         }
 
         &-action {
-            width: 25px;
-            height: 25px;
             cursor: pointer;
             opacity: .7;
             transition: opacity .15s ease;
@@ -40,22 +44,10 @@
             &:hover {
                 opacity: 1;
             }
+        }
 
-            &_done {
-                background-color: green;
-            }
-
-            &_revert {
-                background-color: orange;
-            }
-
-            &_edit {
-                background-color: yellow;
-            }
-
-            &_delete {
-                background-color: red;
-            }
+        &_done {
+            opacity: 0.7;
         }
     }
 

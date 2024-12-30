@@ -10,18 +10,13 @@
     }
 
     & label,
-    & label.Mui-focused,
     & .MuiInputBase-root {
         color: var(--primary-color);
         font-size: 1rem;
     }
     
     & label.Mui-focused {
-        transform: translate(0, -1.5px) scale(1);
-    }
-
-    & label.MuiFormLabel-filled {
-        transform: translate(0, -1.5px) scale(1);
+        color: var(--primary-color);
     }
 
     & .MuiInput-underline:after {

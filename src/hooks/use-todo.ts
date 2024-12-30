@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TodoTask, TodoTaskStatus } from '../components/todo-list/todo-list';
 
 export const useTodo = () => {
-    const [tasks, setTasks] = useState<TodoTask[]>([]);
+    const [tasks, setTasks] = useState<TodoTask[]>(require('../../default.json'));
 
     const addTask = (task: TodoTask) => {
         setTasks(prev => {
