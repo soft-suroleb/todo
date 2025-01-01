@@ -1,0 +1,25 @@
+.tags-badges {
+    display: flex;
+    gap: var(--elements-gap);
+    flex-wrap: wrap;
+
+    &__item {
+        border-radius: var(--border-radius);
+        border: 1px solid var(--primary-color);
+        padding: 2px 5px;
+
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+
+    &__delete {
+        font-size: 1.5rem;
+        opacity: .8;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

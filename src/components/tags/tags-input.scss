@@ -1,0 +1,26 @@
+#tags-container {
+    display: contents;
+}
+
+.tags-input {
+    &__badges {
+        display: contents;
+    }
+
+    &__input {
+        & .MuiInputBase-root {
+            gap: var(--elements-gap);
+            flex-wrap: wrap;
+        }
+
+        & textarea {
+            flex: 1 1 100px;
+        }
+
+        &_filled {
+            & label {
+                transform: translate(0, -1.5px) scale(0.75);
+            }
+        }
+    }
+}

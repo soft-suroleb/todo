@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { TodoTask } from "../todo-list/todo-list";
 import TextField from '@mui/material/TextField';
 import { Button, ButtonView } from '../button/button';
-import './todo-form.scss';
+import { Tag, TagsInput } from '../tags/tags-input';
 
+import './todo-form.scss';
 import { cn } from '../../utils';
 const cls = cn('todo-form');
 
@@ -25,9 +26,19 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
         setTask(prev => ({ ...prev, description }));
     }
 
+    const onChangeTags = (tags: Tag[]) => {
+        setTask(prev => ({ ...prev, tags }));
+    }
+
     const onCancel = () => {
         setTask(undefined);
         props.onCancel();
+    }
+
+    const onSubmit = () => {
+        props.onSubmit({
+            ...task,
+        })
     }
 
     return (
@@ -48,6 +59,10 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
                 value={task?.description}
                 onChange={(e) => onChangeDescription(e.target.value)}
             />
+            <TagsInput
+                value={task?.tags || []}
+                onChange={onChangeTags}
+            />
             <div className={cls('action')}>
                 <Button
                     view={ButtonView.Secondary}
@@ -58,7 +73,7 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
                     className={cls('submit')}
                     view={ButtonView.Primary}
                     text={"Применить"}
-                    onClick={() => props.onSubmit(task)}
+                    onClick={onSubmit}
                 />
             </div>
         </div>

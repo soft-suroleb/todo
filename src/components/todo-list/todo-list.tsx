@@ -4,11 +4,13 @@ import { useForm } from "../../hooks/use-form";
 import { CheckmarkIcon } from "../icons/checkmark/checkmark";
 import { EditIcon } from "../icons/edit/edit";
 
-import './todo-list.scss';
-import { cn } from "../../utils";
 import { SvgSize } from "../icons/types";
 import { TrashIcon } from "../icons/trash/trash";
 import { RevertIcon } from "../icons/revert/revert";
+import { Tag } from "../tags/tags-input";
+
+import './todo-list.scss';
+import { cn } from "../../utils";
 const cls = cn('todo-list');
 
 export enum TodoTaskStatus {
@@ -22,6 +24,7 @@ export interface TodoTask {
     title: string;
     description: string;
     status: TodoTaskStatus;
+    tags?: Tag[];
 }
 
 export interface TodoListProps {
