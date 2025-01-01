@@ -9,13 +9,13 @@
         border-radius: var(--border-radius);
         padding: var(--block-padding);
         display: flex;
+        align-items: center;
         transition: opacity .3s ease;
 
         &-content {
             display: flex;
             flex-direction: column;
             gap: var(--elements-gap);
-            flex-grow: 1;
         }
 
         &-title {
@@ -34,6 +34,7 @@
             align-items: center;
             opacity: 0;
             transition: opacity .15s ease;
+            margin-left: var(--elements-gap);
         }
 
         &-action {
@@ -48,6 +49,10 @@
 
         &_done {
             opacity: 0.7;
+        }
+
+        &-tags {
+            margin-left: auto;
         }
     }
 

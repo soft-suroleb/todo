@@ -5,12 +5,27 @@
 
     &__item {
         border-radius: var(--border-radius);
-        border: 1px solid var(--primary-color);
         padding: 2px 5px;
-
         display: flex;
         gap: 5px;
         align-items: center;
+
+        &_view {
+            &_primary {
+                background-color: var(--primary-color);
+                color: var(--bg-color-primary);
+            }
+
+            &_secondary {
+                border: 1px solid var(--primary-color);
+            }
+        }
+
+
+    }
+
+    &__tag {
+        color: inherit;
     }
 
     &__delete {

@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { TagsBadges } from './tags-badges';
+import { TagsBadges, TagsView } from './tags-badges';
 import { useForceUpdate } from '../../hooks/use-force-update';
 
 import './tags-input.scss';
@@ -72,7 +72,9 @@ export const TagsInput: React.FC<TagsInputProps> = (props) => {
             <TagsBadges
                 className={cls('badges')}
                 tags={value}
+                view={TagsView.Secondary}
                 onDeleteTag={onDeleteTag}
+                withClose
             />,
             tagsContainer
         );

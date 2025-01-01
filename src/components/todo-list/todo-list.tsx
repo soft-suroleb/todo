@@ -11,6 +11,7 @@ import { Tag } from "../tags/tags-input";
 
 import './todo-list.scss';
 import { cn } from "../../utils";
+import { TagsBadges, TagsView } from "../tags/tags-badges";
 const cls = cn('todo-list');
 
 export enum TodoTaskStatus {
@@ -85,6 +86,13 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
                                 size={SvgSize.L}
                             />
                         </div>
+                        {task.tags && (
+                            <TagsBadges
+                                className={cls('item-tags')}
+                                view={TagsView.Primary}
+                                tags={task.tags}
+                            />
+                        )}
                     </div>
                 )
             })}

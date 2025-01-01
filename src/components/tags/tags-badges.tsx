@@ -4,11 +4,18 @@ import './tags-badges.scss';
 import { cn } from "../../utils";
 const cls = cn('tags-badges');
 
+export enum TagsView {
+    Primary = 'primary',
+    Secondary = 'secondary',
+};
+
 export interface TagsBadgesProps {
     className?: string;
     tags: string[];
-    onDeleteTag: (tag: string) => void;
-}
+    view: TagsView;
+    onDeleteTag?: (tag: string) => void;
+    withClose?: boolean;
+};
 
 export const TagsBadges: React.FC<TagsBadgesProps> = (props) => {
     return (
@@ -20,16 +27,18 @@ export const TagsBadges: React.FC<TagsBadgesProps> = (props) => {
         >
             {props.tags.map((tag, idx) => (
                 <div
-                    className={cls('item')}
+                    className={cls('item', { view: props.view })}
                     key={idx}
                 >
                     <span className={cls('tag')}>{tag}</span>
-                    <span
-                        className={cls('delete')}
-                        onClick={() => props.onDeleteTag(tag)}
-                    >
-                        &times;
-                    </span>
+                    {props.withClose && (
+                        <span
+                            className={cls('delete')}
+                            onClick={() => props.onDeleteTag(tag)}
+                        >
+                            &times;
+                        </span>
+                    )}
                 </div>
             ))}
         </div>
