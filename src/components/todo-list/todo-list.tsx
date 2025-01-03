@@ -30,6 +30,7 @@ export interface TodoTask {
 
 export interface TodoListProps {
     tasks: TodoTask[];
+    onTagClick: (tag: Tag) => void;
     onEditTask: (task: TodoTask) => void;
     onChangeTaskStatus: (idx: number, status: TodoTaskStatus) => void;
 }
@@ -89,6 +90,7 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
                         </div>
                         {task.tags && (
                             <TagsBadges
+                                onTagClick={props.onTagClick}
                                 className={cls('item-tags')}
                                 view={TagsView.Secondary}
                                 tags={task.tags}

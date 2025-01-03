@@ -20,6 +20,14 @@ export const Main = () => {
             (filter.tags.length === 0 || filter.tags.every(tag => task.tags?.includes(tag)))
     );
 
+    const onTagClick = (tag: Tag) => {
+        if (filter.tags.includes(tag) && filter.tags.length === 1) {
+            onChangeFilter({ ...filter, tags: [] })
+        } else {
+            onChangeFilter({ ...filter, tags: [tag] })
+        }
+    }
+
     return (
         <div className={cls()}>
             <Header
@@ -33,6 +41,7 @@ export const Main = () => {
                     tasks={filteredTasks}
                     onEditTask={editTask}
                     onChangeTaskStatus={changeTaskStatus}
+                    onTagClick={onTagClick}
                 />
             ) : (
                 <div className={cls('empty')}>
