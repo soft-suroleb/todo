@@ -1,0 +1,16 @@
+.tags-filter {
+    & .MuiSelect-select {
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        border-radius: var(--border-radius) !important;
+        padding: var(--block-padding);
+    }
+
+    & .MuiInputBase-root:hover fieldset {
+        border: none;
+    }
+
+    & .Mui-focused fieldset {
+        border-color: transparent !important;
+    }
+}

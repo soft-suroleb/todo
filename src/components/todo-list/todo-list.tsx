@@ -36,7 +36,7 @@ export interface TodoListProps {
 
 export const TodoList: React.FC<TodoListProps> = (props) => {
     const { tasks, onChangeTaskStatus } = props;
-    const { openForm } = useForm({ title: 'Редактировать' });
+    const { openForm } = useForm();
 
     return (
         <div className={cls()}>
@@ -50,6 +50,7 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
             
                 const onEditTask = () => {
                     openForm({
+                        title: 'Редактировать',
                         initialValue: task,
                         onSubmit: props.onEditTask,
                     })
@@ -89,7 +90,7 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
                         {task.tags && (
                             <TagsBadges
                                 className={cls('item-tags')}
-                                view={TagsView.Primary}
+                                view={TagsView.Secondary}
                                 tags={task.tags}
                             />
                         )}
