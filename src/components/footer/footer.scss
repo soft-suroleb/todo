@@ -1,0 +1,48 @@
+.footer {
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color-secondary);
+    margin-top: auto;
+    padding: var(--section-padding);
+
+    display: flex;
+    gap: var(--elements-gap);
+    align-items: center;
+
+    &__not-selected {
+        opacity: .7;
+    }
+
+    &__selected {
+        display: flex;
+        align-items: center;
+        gap: var(--elements-gap);
+        line-height: 1rem;
+
+        & span {
+            font-weight: 600;
+        }
+
+        & svg {
+            cursor: pointer;
+
+            &:hover {
+                opacity: .8;
+            }
+        }
+    }
+
+    &__mode {
+        margin-left: auto;
+        cursor: pointer;
+        &:hover {
+            opacity: .8;
+        }
+    }
+
+    &__language {
+        cursor: pointer;
+        &:hover {
+            opacity: .8;
+        }
+    }
+}

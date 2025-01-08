@@ -34,7 +34,10 @@ export const TagsBadges: React.FC<TagsBadgesProps> = (props) => {
                         clickable: Boolean(props.onTagClick)
                     })}
                     key={idx}
-                    onClick={() => props.onTagClick(tag)}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        props.onTagClick(tag)
+                    }}
                 >
                     <span className={cls('tag')}>{tag}</span>
                     {props.withClose && (

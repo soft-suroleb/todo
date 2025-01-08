@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Header } from '../header/header';
-import { TodoList, TodoTaskStatus } from '../todo-list/todo-list';
-import { useTodo } from '../../hooks/use-todo';
+import { TodoList, TodoTask, TodoTaskStatus } from '../todo-list/todo-list';
 import { Tag } from '../tags/tags-input';
+import { Footer } from '../footer/footer';
+import { useTodo } from '../../hooks/use-todo';
+import { useFilter } from '../../hooks/use-filter';
 
 import './main.scss';
-
 import { cn } from '../../utils';
-import { useFilter } from '../../hooks/use-filter';
 const cls = cn('main');
 
 export const Main = () => {
     const { tasks, addTask, editTask, changeTaskStatus } = useTodo();
     const { filter, onChange: onChangeFilter } = useFilter();
+    const [selected, setSelected] = useState<TodoTask['id'][]>([]);
 
     const filteredTasks = tasks.filter(
         task => 
@@ -28,8 +29,28 @@ export const Main = () => {
         }
     }
 
+    const onChangeSelected = (id: TodoTask['id']) => {
+        setSelected(prev => {
+            if (!prev.includes(id)) {
+                return [...prev, id]; 
+            }
+
+            return prev.filter(item => item !== id);
+        })
+    }
+
+    const onDoneSelected = () => {
+        selected.forEach(item => changeTaskStatus(item, TodoTaskStatus.Done));
+        setSelected([]);
+    }
+
+    const onDeleteSelected = () => {
+        selected.forEach(item => changeTaskStatus(item, TodoTaskStatus.Deleted));
+        setSelected([]);
+    }
+
     return (
-        <div className={cls()}>
+        <main className={cls()}>
             <Header
                 onAddTask={addTask}
                 filter={filter}
@@ -39,6 +60,8 @@ export const Main = () => {
             {filteredTasks.length ? (
                 <TodoList
                     tasks={filteredTasks}
+                    selected={selected}
+                    onItemClick={onChangeSelected}
                     onEditTask={editTask}
                     onChangeTaskStatus={changeTaskStatus}
                     onTagClick={onTagClick}
@@ -48,7 +71,11 @@ export const Main = () => {
                     <span>{"У вас еще нет задач"}</span>
                 </div>
             )}
-            <footer>footer</footer>
-        </div>
+            <Footer
+                selectedTasks={selected}
+                onDoneSelected={onDoneSelected}
+                onDeleteSelected={onDeleteSelected}
+            />
+        </main>
     )
 }

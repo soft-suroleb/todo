@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { useForm } from "../../hooks/use-form";
 import { CheckmarkIcon } from "../icons/checkmark/checkmark";
@@ -12,6 +12,7 @@ import { Tag } from "../tags/tags-input";
 import './todo-list.scss';
 import { cn } from "../../utils";
 import { TagsBadges, TagsView } from "../tags/tags-badges";
+import { Check, Pencil, RotateCcw, Trash2 } from "lucide-react";
 const cls = cn('todo-list');
 
 export enum TodoTaskStatus {
@@ -30,6 +31,8 @@ export interface TodoTask {
 
 export interface TodoListProps {
     tasks: TodoTask[];
+    selected: TodoTask['id'][];
+    onItemClick: (id: TodoTask['id']) => void;
     onTagClick: (tag: Tag) => void;
     onEditTask: (task: TodoTask) => void;
     onChangeTaskStatus: (idx: number, status: TodoTaskStatus) => void;
@@ -45,48 +48,52 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
                 const isActive = task.status === TodoTaskStatus.Active;
                 const isDone = task.status === TodoTaskStatus.Done;
 
-                const onDeleteTask = () => onChangeTaskStatus(task.id, TodoTaskStatus.Deleted);
-                const onDoneTask = () => onChangeTaskStatus(task.id, TodoTaskStatus.Done);
-                const onRevertTask = () => onChangeTaskStatus(task.id, TodoTaskStatus.Active);
+                const onItemActionClick = (callback: () => void) => {
+                    return (e: React.MouseEvent) => {
+                        callback();
+                        e.stopPropagation();
+                    }
+                }
+
+                const onDeleteTask = onItemActionClick(() => 
+                    onChangeTaskStatus(task.id, TodoTaskStatus.Deleted)
+                );
+                const onDoneTask = onItemActionClick(() => 
+                    onChangeTaskStatus(task.id, TodoTaskStatus.Done)
+                )
+                const onRevertTask = onItemActionClick(() => 
+                    onChangeTaskStatus(task.id, TodoTaskStatus.Active)
+                );
             
-                const onEditTask = () => {
+                const onEditTask = onItemActionClick(() => {
                     openForm({
                         title: 'Редактировать',
                         initialValue: task,
                         onSubmit: props.onEditTask,
                     })
-                };
+                });
+
+                const isSelected = props.selected.includes(task.id);
+                const onItemClick = () => props.onItemClick(task.id);
 
                 return (
-                    <div className={cls('item', { done: isDone })} key={task.id}>
+                    <div
+                        className={cls('item', { done: isDone, selected: isSelected })}
+                        key={task.id}
+                        onClick={onItemClick}
+                    >
                         <div className={cls('item-content')}>
                             <div className={cls('item-title', { done: isDone })}>{task.title}</div>
                             <div className={cls('item-description')}>{task.description}</div>
                         </div>
                         <div className={cls('item-actions')}>
                             {isActive ? (
-                                <CheckmarkIcon
-                                    className={cls('item-action', { done: true })}
-                                    onClick={onDoneTask}
-                                    size={SvgSize.XL}
-                                />
+                                <Check onClick={onDoneTask} size={27} />
                             ) : (
-                                <RevertIcon
-                                    className={cls('item-action', { revert: true })}
-                                    onClick={onRevertTask}
-                                    size={SvgSize.L}
-                                />
+                                <RotateCcw onClick={onRevertTask} size={20}/>
                             )}
-                            <EditIcon
-                                className={cls('item-action', { edit: true })}
-                                onClick={onEditTask}
-                                size={SvgSize.L}
-                            />
-                            <TrashIcon
-                                className={cls('item-action', { delete: true })}
-                                onClick={onDeleteTask}
-                                size={SvgSize.L}
-                            />
+                            <Pencil onClick={onEditTask} size={20} />
+                            <Trash2 onClick={onDeleteTask} size={20} />
                         </div>
                         {task.tags && (
                             <TagsBadges
