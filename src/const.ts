@@ -1,0 +1,1 @@
+export const themeModeLS = '_theme_mode';

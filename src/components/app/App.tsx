@@ -1,5 +1,5 @@
 import React from "react";
-import '../../variables.scss';
+import './globals.scss';
 
 import { Main } from "../main/main"; 
 import { ModalProvider } from "../contexts/modal";
